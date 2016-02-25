@@ -11,6 +11,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.junit.rules.ExpectedException;
+import org.junit.rules.Timeout;
 
 import com.sample.proteintracker.InvalidGoalException;
 import com.sample.proteintracker.TrackingService;
@@ -58,14 +59,14 @@ public class TrackingServiceTest {
 	@Category(BadTestCategory.class)
 	public void CheckForInvalidGoalException() throws InvalidGoalException{
 		thrown.expect(InvalidGoalException.class);
-		
-		//thrown.expectMessage("Goal was less than zero");
-		//or
 		thrown.expectMessage(containsString("Goal"));
 		service.setGoal(-1);
 	}
 	
-	@Test(timeout= 200)
+	@Rule
+	public Timeout timeout = new Timeout(20); // 20 milliseconds
+	
+	@Test
 	@Category({
 		GoodTestCategory.class,
 		BadTestCategory.class
