@@ -23,7 +23,6 @@ public class TrackingServiceTest {
 	}
 
 	@Test
-	
 	public void NewTrackingServiceTotalIsZero() {
 		assertEquals("Tracking Service Total was NOT 0", 0, service.getTotal());
 	}
