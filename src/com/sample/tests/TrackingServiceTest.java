@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -33,16 +34,15 @@ public class TrackingServiceTest {
 	@Test
 	@Category(GoodTestCategory.class)
 	public void WhenAddingProteinTotalIncreases() {
-		
 		//Use AssertThat now...
-		int val = 5;
+		int val = 10;
 		service.addProtein(val);
 		assertEquals("Total was not added correctly", val, service.getTotal());
 		
-		assertThat(service.getTotal(), is(5));
+		assertThat(service.getTotal(), is(10));
 		
 		// allOf checks that every condition inside the parenthesis is true
-		assertThat(service.getTotal(), allOf(is(5), instanceOf(Integer.class)));
+		assertThat(service.getTotal(), allOf(is(10), instanceOf(Integer.class)));
 	}
 
 	@Test
@@ -67,6 +67,7 @@ public class TrackingServiceTest {
 	public Timeout timeout = new Timeout(20); // 20 milliseconds
 	
 	@Test
+	@Ignore
 	@Category({
 		GoodTestCategory.class,
 		BadTestCategory.class
